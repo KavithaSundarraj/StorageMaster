@@ -8,7 +8,7 @@ namespace StorageMaster.Models.Products
 {
     class Ram : Product
     {
-        public Ram(Double price, double weight = 0.1) : base(price, weight)
+        public Ram(double price, double weight = 0.1) : base(price, weight)
         {
             this.Price = price;
             this.Weight = 0.1;

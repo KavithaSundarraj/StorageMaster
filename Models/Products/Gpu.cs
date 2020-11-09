@@ -9,7 +9,7 @@ namespace StorageMaster.Models.Products
 {
     class Gpu : Product
     {
-        public Gpu(Double price, double weight = 0.7) : base(price, weight)
+        public Gpu(double price, double weight = 0.7) : base(price, weight)
         {
             this.Price = price;
             this.Weight = 0.7;
