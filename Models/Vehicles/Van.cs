@@ -11,5 +11,6 @@ namespace StorageMaster.Models.Storages
 {
     class Van
     {
+    Capacity = 2;
     }
 }
