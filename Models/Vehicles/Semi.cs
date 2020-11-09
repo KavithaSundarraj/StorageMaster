@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StorageMaster.Models.Storages
+namespace StorageMaster.Models.Vehicles
 {
     class Semi
     {
