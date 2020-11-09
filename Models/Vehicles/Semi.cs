@@ -4,7 +4,13 @@ using System.Text;
 
 namespace StorageMaster.Models.Storages
 {
-    class Semi
+    class Semi : Vehicle
     {
+        Semi()
+        {
+            Capacity = 5.0;
+        }
+
+
     }
 }
