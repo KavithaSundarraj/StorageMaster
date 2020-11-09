@@ -9,8 +9,11 @@ There are several concrete types of products:
 
 namespace StorageMaster.Models.Storages
 {
-    class Van
+    class Van : Vehicle
     {
-    Capacity = 2;
-    }
+        Van()
+        {
+            Capacity = 2.0;
+        }
+     }
 }
