@@ -10,7 +10,18 @@ namespace StorageMaster.Models.Storages
         {
             this.Name = name;
             this.Capacity = 10;
-            this.GarageSlots = garageSlots;
+            this.GarageSlots = 10;
+
+            // ***  array.
+            garage = new Vehicle[garageSlots];
+            SemiTruck truck = new SemiTruck();
+
+//*** default vehicle assigned as SemiTruck. 
+
+            garage.add(truck); 
+            garage.add(truck); 
+            garage.add(truck);
+        }
         }
     }
-}
+
