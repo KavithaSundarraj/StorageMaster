@@ -34,10 +34,17 @@ namespace StorageMaster.Models.Vehicles
                  IsFuLL = true;
             }
         }
+        void CheckIfEmpty()
+        {
+            if(Trunk.Count == 0)
+            {
+                IsEmpty = true;
+            }
+        }
 
         Product Unload()
         {
-            if(Trunk.Count == 0)
+            if(IsEmpty)
             {
                 throw new InvalidOperationException("No products left in vehicle!");
             }
@@ -46,6 +53,7 @@ namespace StorageMaster.Models.Vehicles
                 Product unloadedItem = Trunk[Trunk.Count];
                 TotalWeight -= unloadedItem.Weight;
                 this.Trunk.RemoveAt(Trunk.Count);
+                CheckIfEmpty();
                 return unloadedItem;
             }
         }

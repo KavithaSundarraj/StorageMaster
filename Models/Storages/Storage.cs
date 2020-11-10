@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace StorageMaster.Models.Storages
 {
-    abstract class Storage
+   public abstract class Storage
     {
         
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StorageMaster.Models.Vehicles
 {
-    class Semi : Vehicle
+    public class Semi : Vehicle
     {
         Semi()
         {
