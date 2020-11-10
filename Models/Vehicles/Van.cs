@@ -8,12 +8,12 @@ There are several concrete types of products:
 · Van – always has 2 capacity */
 
 namespace StorageMaster.Models.Storages
-{ 
-class Van : Vehicle
- { 
-public Van(int Capacity = 2) : base(int capacity)
 {
-this.Capacity = 2;
-}
-}
+    class Van : Vehicle
+    {
+        Van()
+        {
+            Capacity = 2.0;
+        }
+     }
 }

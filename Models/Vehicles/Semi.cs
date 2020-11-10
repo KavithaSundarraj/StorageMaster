@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StorageMaster.Models.Storages
+namespace StorageMaster.Models.Vehicles
 {
-    class Semi
+    class Semi : Vehicle
     {
+        Semi()
+        {
+            Capacity = 5.0;
+        }
+
+
     }
 }
