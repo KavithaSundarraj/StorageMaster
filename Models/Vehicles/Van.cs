@@ -7,9 +7,9 @@ Data
 There are several concrete types of products:
 · Van – always has 2 capacity */
 
-namespace StorageMaster.Models.Storages
+namespace StorageMaster.Models.Vehicles
 {
-    class Van : Vehicle
+    public class Van : Vehicle
     {
         Van()
         {

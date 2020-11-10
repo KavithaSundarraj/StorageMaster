@@ -7,9 +7,9 @@ namespace StorageMaster.Models.Vehicles
 {
     public abstract class Vehicle
     {
-        double Capacity {get; set}
-        //public IReadOnlyCollection<Products> Trunk => this.Trunk.AsReadOnly();
-        public List<Products> Trunk;
+        public double Capacity { get; set; }
+        //public IReadOnlyCollection<Product> Trunk => this.Trunk.AsReadOnly();
+        public List<Product> Trunk = new List<Product>();
         bool IsFuLL;
         bool IsEmpty;
         double TotalWeight;
@@ -23,11 +23,11 @@ namespace StorageMaster.Models.Vehicles
             else
 	        {
                 this.Trunk.Add(product);
-                TotalWeight += product.weight;
+                TotalWeight += product.Weight;
                 CheckIfFull();
 	        }
         }
-        void CheckIfFull(product)
+        void CheckIfFull()
         {
             if (TotalWeight >= Capacity)
             {
@@ -37,14 +37,14 @@ namespace StorageMaster.Models.Vehicles
 
         Product Unload()
         {
-            if(Trunk.Count = 0)
+            if(Trunk.Count == 0)
             {
                 throw new InvalidOperationException("No products left in vehicle!");
             }
             else
             {
                 Product unloadedItem = Trunk[Trunk.Count];
-                TotalWeight -= unloadedItem.weight;
+                TotalWeight -= unloadedItem.Weight;
                 this.Trunk.RemoveAt(Trunk.Count);
                 return unloadedItem;
             }
