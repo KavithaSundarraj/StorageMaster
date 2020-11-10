@@ -9,7 +9,7 @@ namespace StorageMaster.Models.Vehicles
     {
         double Capacity {get; set}
         //public IReadOnlyCollection<Products> Trunk => this.Trunk.AsReadOnly();
-        public List<Products> Trunk;
+        public List<Product> Trunk;
         bool IsFuLL;
         bool IsEmpty;
         double TotalWeight;
