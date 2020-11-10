@@ -14,9 +14,13 @@ namespace StorageMaster.Models.Storages
 
             // ***  array.
             garage = new Vehicle[garageSlots];
-            Truck truck = new Truck();
-            garage
+            SemiTruck truck = new SemiTruck();
 
+//*** default vehicle assigned as SemiTruck. 
+
+            garage.add(truck); 
+            garage.add(truck); 
+            garage.add(truck);
         }
         }
     }
