@@ -11,17 +11,17 @@ namespace StorageMaster.Models.Storages
     {
         
 
-        protected string  Name { get; set; }  // Name – string
-        protected int Capacity { get; set; }  // Capacity – int – the maximum weight of products the storage can handle
-        protected int GarageSlots { get; set; }  // GarageSlots – int – the number of garage slots the storage’s garage has
-        
+        public string  Name { get; set; }  // Name – string
+        public int Capacity { get; set; }  // Capacity – int – the maximum weight of products the storage can handle
+        public int GarageSlots { get; set; }  // GarageSlots – int – the number of garage slots the storage’s garage has
 
 
-        protected IEnumerable<Vehicle> vehicles;
-//      protected IReadOnlyCollection<Vehicle> garage;
-        protected Vehicle[] garage;
 
-        protected IReadOnlyCollection<Product> products;
+        public List<Vehicle> vehicles;
+        //      protected IReadOnlyCollection<Vehicle> garage;
+        public Vehicle[] garage;
+
+        public IReadOnlyCollection<Product> products;
 //      List<Product> product = new List<Product>();  // List of all products in this Storage
 
         // Returns true if the sum of the products’ weights is equal to or larger than the storage capacity (calculated property)
@@ -37,15 +37,15 @@ namespace StorageMaster.Models.Storages
                 else
                     return false;
         }
-        public Storage(string name, int capacity, int garageSlots, IEnumerable<Vehicle> vehicles)
+        public Storage(string name)
         {
             this.Name = name;
-            this.Capacity = capacity;
+            /*this.Capacity = capacity;
             this.GarageSlots = garageSlots;
-            this.vehicles = vehicles;
+            this.vehicles = vehicles;*/
 
             // ***  array.
-            garage = new Vehicle[garageSlots];
+            garage = new Vehicle[GarageSlots];
 
             // Copy the vechicles from a List to the garage array
             int i = 0;

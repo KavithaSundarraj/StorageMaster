@@ -1,5 +1,6 @@
 ﻿using StorageMaster.Models.Products;
 using StorageMaster.Models.Storages;
+using StorageMaster.Models.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,8 +11,10 @@ namespace StorageMaster.Core
     {
         public List<Product> ProductPool;
         Product p;
-        public List<Storage> StorageRegistry;
+        public List<Storage> StorageRegistry = new List<Storage>();
         Storage s;
+        Vehicle selectedvehicle;
+
         public string AddProduct(string type, double price)
         {
 
@@ -44,7 +47,7 @@ namespace StorageMaster.Core
             switch (type)
             {
                 case "AutomatedWarehouse":
-                    s = new AutomatedWarehouse(name); //The constructor needs to get it's parameters trimmed. Capacity and vehicles shouldn't be parameters. They are already decided by type
+                    s = new AutomatedWarehouse(name);  
                     break;
                 case "DistributionCenter":
                     s = new DistributionCenter(name);
@@ -56,9 +59,43 @@ namespace StorageMaster.Core
                     throw new InvalidOperationException("Invalid storage type!");
 
             }
-            return null; // todo
+            StorageRegistry.Add(s);
+            return $"Registered {name}"; 
         }
-    }
-   
     
+    public string Selectvehicle(string StorageName, int GarageSlot)
+    {
+            //need fix for exceptions
+        foreach(Storage s in StorageRegistry )
+            {
+                if(s.Name==StorageName)
+                {
+
+                    selectedvehicle = s.garage[GarageSlot];
+                }
+
+            }
+
+        //we need name of selected vehicle
+        return $"{selectedvehicle}";
+    }
+
+     public string LoadVehicle(string Productnames)
+        {
+           // ProductPool.FindLast(Productnames);
+            foreach (Product p in ProductPool)
+            {
+                
+                if ((p.GetType().ToString() )== Productnames)
+                {
+                    
+                    
+                }
+
+            }
+
+            return null;
+        }
+
+    }
 }

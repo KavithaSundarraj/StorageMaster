@@ -45,10 +45,10 @@ namespace StorageMaster.Models.Products
             {
             }
         }
-        public Product(double price,double weight)
+        public Product(double price)
         {
             this.price = price;
-            this.weight = weight;
+            
         }
 
     }

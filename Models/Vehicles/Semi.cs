@@ -6,7 +6,7 @@ namespace StorageMaster.Models.Vehicles
 {
     public class Semi : Vehicle
     {
-        Semi()
+        public Semi()
         {
             Capacity = 5.0;
         }

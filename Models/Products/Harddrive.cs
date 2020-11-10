@@ -8,7 +8,7 @@ namespace StorageMaster.Models.Products
 {
     class Harddrive : Product
     {
-        public Harddrive(double price, double weight = 1) : base(price, weight)
+        public Harddrive(double price ): base(price)
         {
             this.Price = price;
             this.Weight = 1;

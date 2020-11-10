@@ -11,7 +11,7 @@ namespace StorageMaster.Models.Vehicles
 {
     public class Van : Vehicle
     {
-        Van()
+        public Van()
         {
             Capacity = 2.0;
         }

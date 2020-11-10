@@ -1,22 +1,23 @@
-﻿using System;
+﻿using StorageMaster.Models.Vehicles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace StorageMaster.Models.Storages
 {
-    class AutomatedWarehouse : Storage
+   public class AutomatedWarehouse : Storage
     {
-        AutomatedWarehouse(string name, int capacity, int garageSlots, IEnumerable<Vehicle> vehicles) : base(name, capacity, garageSlots, vehicles)
+        public AutomatedWarehouse(string name) : base(name)
         {
             this.Name = name;
             this.Capacity = 1;
             this.GarageSlots = 2;
 
-            // ***  array.
-            garage = new Vehicle[garageSlots];
+            Vehicle[] garage = new Vehicle[GarageSlots];
+
             Truck truck = new Truck();
-            garage
+            garage[0] = truck;
 
         }
     }

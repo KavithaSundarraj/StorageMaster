@@ -7,7 +7,7 @@ namespace StorageMaster.Models.Products
 { 
 class SolidStateDrive : Product
 { 
-public SolidStateDrive(Double price, Double weight = 0.2) : base(price, weight) 
+public SolidStateDrive(Double price) : base(price) 
 { 
 this.Price = price;
 this.Weight = 0.2; 
