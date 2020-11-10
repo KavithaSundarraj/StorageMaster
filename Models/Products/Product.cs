@@ -15,7 +15,7 @@ double price, double weight
 
 namespace StorageMaster.Models.Products
 {
-  abstract class Product
+    public abstract class Product
     {
         double price;
         double weight;

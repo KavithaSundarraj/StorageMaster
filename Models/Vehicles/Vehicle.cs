@@ -23,7 +23,7 @@ namespace StorageMaster.Models.Vehicles
             else
 	        {
                 this.Trunk.Add(product);
-                TotalWeight += product.weight;
+                TotalWeight += product.Weight;
                 CheckIfFull();
 	        }
         }
@@ -37,16 +37,17 @@ namespace StorageMaster.Models.Vehicles
 
         Product Unload()
         {
-            if(Trunk.Count = 0)
+            if(Trunk.Count == 0)
             {
                 throw new InvalidOperationException("No products left in vehicle!");
             }
             else
             {
                 Product unloadedItem = Trunk[Trunk.Count];
-                TotalWeight -= unloadedItem.weight;
+                TotalWeight -= unloadedItem.Weight;
                 this.Trunk.RemoveAt(Trunk.Count);
                 return unloadedItem;
+
             }
         }
         
