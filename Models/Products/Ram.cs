@@ -12,6 +12,7 @@ namespace StorageMaster.Models.Products
         {
             this.Price = price;
             this.Weight = 0.1;
+            this.Type = "Ram";
         }
     
     }

@@ -19,7 +19,9 @@ namespace StorageMaster.Models.Products
     {
         double price;
         double weight;
+        public string Type;
         public double Price
+        
         {
             get
             {

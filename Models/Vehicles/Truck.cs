@@ -9,6 +9,7 @@ namespace StorageMaster.Models.Vehicles
         public Truck()
         {
             Capacity = 5.0;
+            Type = "Truck";
         }
 
         

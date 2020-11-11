@@ -12,6 +12,7 @@ namespace StorageMaster.Models.Products
         {
             this.Price = price;
             this.Weight = 1;
+            this.Type = "HardDrive";
         }
     }
 }

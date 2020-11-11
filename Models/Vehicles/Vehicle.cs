@@ -10,41 +10,47 @@ namespace StorageMaster.Models.Vehicles
         public double Capacity { get; set; }
         //public IReadOnlyCollection<Product> Trunk => this.Trunk.AsReadOnly();
         public List<Product> Trunk = new List<Product>();
-        bool IsFuLL;
-        bool IsEmpty;
-        double TotalWeight;
+        public bool IsFuLL;
+        public bool IsEmpty;
+        public double TotalWeight;
+        public string Type;
 
-        void LoadProduct(Product product)
+        public Vehicle()
         {
-            if(this.IsFuLL)
+
+        }
+
+        public void LoadProduct(Product product)
+        {
+            if (this.IsFuLL)
             {
                 throw new InvalidOperationException("Vehicle is full!");
             }
             else
-	        {
+            {
                 this.Trunk.Add(product);
                 TotalWeight += product.Weight;
                 CheckIfFull();
-	        }
+            }
         }
-        void CheckIfFull()
+        public void CheckIfFull()
         {
             if (TotalWeight >= Capacity)
             {
-                 IsFuLL = true;
+                IsFuLL = true;
             }
         }
-        void CheckIfEmpty()
+        public void CheckIfEmpty()
         {
-            if(Trunk.Count == 0)
+            if (Trunk.Count == 0)
             {
                 IsEmpty = true;
             }
         }
 
-        Product Unload()
+        public Product Unload()
         {
-            if(IsEmpty)
+            if (IsEmpty)
             {
                 throw new InvalidOperationException("No products left in vehicle!");
             }
@@ -57,6 +63,6 @@ namespace StorageMaster.Models.Vehicles
                 return unloadedItem;
             }
         }
-        
+
     }
 }

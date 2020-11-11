@@ -19,10 +19,20 @@ namespace StorageMaster.Models.Storages
 
         public List<Vehicle> vehicles;
         //      protected IReadOnlyCollection<Vehicle> garage;
-        public Vehicle[] garage;
+        public Vehicle[] Garage;
 
         public IReadOnlyCollection<Product> products;
-//      List<Product> product = new List<Product>();  // List of all products in this Storage
+        //      List<Product> product = new List<Product>();  // List of all products in this Storage
+
+        public double TotalWeightofAllProducts()
+        {
+            double totalWeight = 0;
+            foreach (Product p in products)
+            {
+                totalWeight += p.Weight;
+            }
+            return totalWeight;
+        }
 
         // Returns true if the sum of the products’ weights is equal to or larger than the storage capacity (calculated property)
         public bool IsFull()
@@ -37,6 +47,7 @@ namespace StorageMaster.Models.Storages
                 else
                     return false;
         }
+
         public Storage(string name)
         {
             this.Name = name;
@@ -45,13 +56,13 @@ namespace StorageMaster.Models.Storages
             this.vehicles = vehicles;*/
 
             // ***  array.
-            garage = new Vehicle[GarageSlots];
+            Garage = new Vehicle[GarageSlots];
 
             // Copy the vechicles from a List to the garage array
             int i = 0;
             foreach (Vehicle veh in vehicles)
             {
-                garage[i++] = veh;
+                Garage[i++] = veh;
             }
         }
 

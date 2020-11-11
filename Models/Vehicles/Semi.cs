@@ -9,6 +9,7 @@ namespace StorageMaster.Models.Vehicles
         public Semi()
         {
             Capacity = 5.0;
+            Type = "Semi";
         }
 
 

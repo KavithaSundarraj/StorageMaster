@@ -13,6 +13,7 @@ namespace StorageMaster.Models.Products
         {
             this.Price = price;
             this.Weight = 0.7;
+            this.Type = "Gpu";
         }
     }
 }

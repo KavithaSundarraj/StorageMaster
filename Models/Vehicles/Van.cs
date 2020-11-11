@@ -14,6 +14,7 @@ namespace StorageMaster.Models.Vehicles
         public Van()
         {
             Capacity = 2.0;
+            Type = "Van";
         }
      }
 }
