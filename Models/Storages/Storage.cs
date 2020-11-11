@@ -9,20 +9,18 @@ namespace StorageMaster.Models.Storages
 {
    public abstract class Storage
     {
-        
 
         public string  Name { get; set; }  // Name – string
         public int Capacity { get; set; }  // Capacity – int – the maximum weight of products the storage can handle
         public int GarageSlots { get; set; }  // GarageSlots – int – the number of garage slots the storage’s garage has
 
 
-
         public List<Vehicle> vehicles;
         //      protected IReadOnlyCollection<Vehicle> garage;
         public Vehicle[] Garage;
 
-        public IReadOnlyCollection<Product> products;
-        //      List<Product> product = new List<Product>();  // List of all products in this Storage
+        // public IReadOnlyCollection<Product> products;
+        public List<Product> products = new List<Product>();  // List of all products in this Storage
 
         public double TotalWeightofAllProducts()
         {
@@ -66,7 +64,7 @@ namespace StorageMaster.Models.Storages
             }
         }
 
-        Vehicle GetVehicle(int garageSlot)
+        public Vehicle GetVehicle(int garageSlot)
         {
             if (garageSlot >= this.GarageSlots)
             {
@@ -77,26 +75,26 @@ namespace StorageMaster.Models.Storages
                 throw new InvalidOperationException(@"No vehicle in this garage slot!!");
             }
             else
-                return garage[garageSlot];       
+                return Garage[garageSlot];       
         }
 
-        int SendVehicleTo(int garageSlot, Storage deliveryLocation)
+        public int SendVehicleTo(int garageSlot, Storage deliveryLocation)
         {
             Vehicle vehicle = GetVehicle(garageSlot);
 
             for (int i = 0; i < deliveryLocation.GarageSlots; i++)
             {
-                if (deliveryLocation.garage[i] == null)
+                if (deliveryLocation.Garage[i] == null)
                 {
-                    deliveryLocation.garage[i] = vehicle;
-                    this.garage[garageSlot] = null;
+                    deliveryLocation.Garage[i] = vehicle;
+                    this.Garage[garageSlot] = null;
                     return i;
                 }
             }
             throw new InvalidOperationException(@"No room in garage!!");
         }
 
-        int UnloadVehicle(int garageSlot)
+        public int UnloadVehicle(int garageSlot)
         {
             if (IsFull())
                 {
@@ -106,9 +104,9 @@ namespace StorageMaster.Models.Storages
             Vehicle vehicle = GetVehicle(garageSlot);
 
             int numOfUnloadedProducts = 0;
-            while (!vehicle.isEmpty())
+            while (!vehicle.IsEmpty)
             {
-                this.product.Add(vehicle.unload());
+                this.products.Add(vehicle.Unload());
                 numOfUnloadedProducts++;
             }
 
