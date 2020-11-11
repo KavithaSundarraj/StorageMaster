@@ -9,13 +9,11 @@ namespace StorageMaster.Models.Storages
 {
    public abstract class Storage
     {
-
         public string  Name { get; set; }  // Name – string
         public int Capacity { get; set; }  // Capacity – int – the maximum weight of products the storage can handle
         public int GarageSlots { get; set; }  // GarageSlots – int – the number of garage slots the storage’s garage has
 
-
-        public List<Vehicle> vehicles;
+        //      public List<Vehicle> vehicles;
         //      protected IReadOnlyCollection<Vehicle> garage;
         public Vehicle[] Garage ;
 
@@ -76,7 +74,7 @@ namespace StorageMaster.Models.Storages
                 throw new InvalidOperationException(@"No vehicle in this garage slot!!");
             }
             else
-                return Garage[garageSlot];       
+                return this.Garage[garageSlot];       
         }
 
         public int SendVehicleTo(int garageSlot, Storage deliveryLocation)
@@ -89,7 +87,8 @@ namespace StorageMaster.Models.Storages
                 {
                     deliveryLocation.Garage[i] = vehicle;
                     this.Garage[garageSlot] = null;
-                    return i+1;
+                    int ArrayToGarageSlotNumber = garageSlot + 1;
+                    return ArrayToGarageSlotNumber;
                 }
             }
             throw new InvalidOperationException(@"No room in garage!!");
@@ -97,15 +96,22 @@ namespace StorageMaster.Models.Storages
 
         public int UnloadVehicle(int garageSlot)
         {
+            int GarageSlotNumberToArray = garageSlot - 1;
             if (IsFull())
                 {
                 throw new InvalidOperationException(@"Storage is Full!!");
             }
-            Vehicle vehicle = Garage[garageSlot];
-            //Vehicle vehicle = GetVehicle(garageSlot);
+            Vehicle vehicle = Garage[GarageSlotNumberToArray];
+/*
+            for (int i = 0; i < 4;  i ++)
+            {
+                vehicle = GetVehicle(garageSlot);
+                Console.WriteLine(vehicle.GetType().Name);
+            }
+*/
             //Console.WriteLine(vehicle.GetType().Name);
             int numOfUnloadedProducts = 0;
-            while (!vehicle.IsEmpty)
+            while (!vehicle.IsVehicleEmpty())
             {
                 this.products.Add(vehicle.Unload());
                 numOfUnloadedProducts++;

@@ -237,7 +237,6 @@ namespace StorageMaster.Core
          *      Then, the method gets the vehicle from the storage at the provided garage slot and sends it to the destination storage.
          *      Returns "Sent {vehicleType} to {destinationName} (slot {destinationGarageSlot})".
          */
-
         public string SendVehicleTo(string sourceName, int garageSlot, string destinationName)
         {
             Storage sourceStorage = FindStorage(sourceName);
@@ -271,8 +270,9 @@ namespace StorageMaster.Core
         {
             Storage s = FindStorage(storageName);
 
+            int GarageSlotNumberToArray = garageSlot - 1;
+            int productsInVehicle = s.Garage[GarageSlotNumberToArray].Trunk.Count;
             int unloadedProductsCount = s.UnloadVehicle(garageSlot);
-            int productsInVehicle = s.Garage[garageSlot].Trunk.Count;
 
             return $"Unloaded {unloadedProductsCount}/{productsInVehicle} products at {storageName}";
         }

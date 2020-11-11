@@ -48,19 +48,26 @@ namespace StorageMaster.Models.Vehicles
             }
         }
 
+        public bool IsVehicleEmpty()  // Added by Daryl on 11/11
+        {
+            return Trunk.Count == 0 ? true : false;
+
+        }
+
         public Product Unload()
         {
-            if (IsEmpty)
+            if (IsVehicleEmpty())
             {
                 throw new InvalidOperationException("No products left in vehicle!");
             }
             else
             {
-                Product unloadedItem = Trunk[Trunk.Count];
+                Product unloadedItem = Trunk[Trunk.Count-1];
                 TotalWeight -= unloadedItem.Weight;
-                this.Trunk.RemoveAt(Trunk.Count);
+                this.Trunk.RemoveAt(Trunk.Count-1);
                 CheckIfEmpty();
                 return unloadedItem;
+
             }
         }
 
