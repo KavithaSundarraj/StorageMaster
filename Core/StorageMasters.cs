@@ -7,9 +7,9 @@ using System.Text;
 
 namespace StorageMaster.Core
 {
-    class StorageMaster
+    class StorageMasters
     {
-        public List<Product> ProductPool;
+        public List<Product> ProductPool= new List<Product>();
         Product p;
         public List<Storage> StorageRegistry = new List<Storage>();
         Storage s;
@@ -63,7 +63,7 @@ namespace StorageMaster.Core
             return $"Registered {name}";
         }
 
-        public string Selectvehicle(string StorageName, int GarageSlot)
+        public string SelectVehicle(string StorageName, int GarageSlot)
         {
             Storage s = StorageRegistry.Find(x => x.Name == StorageName);
 
@@ -200,11 +200,11 @@ namespace StorageMaster.Core
             {
                 if (s.Garage[i] == null)
                 {
-                    vehicleType += "empty";
+                    vehicleType += "empty"+"|";
                 }
                 else
                 {
-                    vehicleType += s.GetType().ToString();
+                    vehicleType += s.Garage[i].GetType().Name.ToString()+" | ";
                 }
             }
 
@@ -238,7 +238,7 @@ namespace StorageMaster.Core
          *      Returns "Sent {vehicleType} to {destinationName} (slot {destinationGarageSlot})".
          */
 
-        public string SendVechicleTo(string sourceName, int garageSlot, string destinationName)
+        public string SendVehicleTo(string sourceName, int garageSlot, string destinationName)
         {
             Storage sourceStorage = FindStorage(sourceName);
             Storage destinationStorage = FindStorage(destinationName);
@@ -247,7 +247,7 @@ namespace StorageMaster.Core
             {
                 throw new InvalidOperationException("Invalid source storage!");
             }
-            if (sourceStorage == null)
+            if (destinationStorage == null)
             {
                 throw new InvalidOperationException("Invalid destination storage!");
             }
@@ -275,6 +275,29 @@ namespace StorageMaster.Core
             int productsInVehicle = s.Garage[garageSlot].Trunk.Count;
 
             return $"Unloaded {unloadedProductsCount}/{productsInVehicle} products at {storageName}";
+        }
+
+       /* The method gets all the storages in the storage registry, ordered by the sum of their products’ price
+        * (descending). For each one, a string is produced in the following format:
+{storageName}:
+Storage worth: ${totalMoney:F2
+}
+The method returns all the formatted storage strings, separated by new lines. */
+
+        public string GetSummary()
+        {
+            double total=0;
+            string output = "";
+            foreach (Storage s in StorageRegistry)
+            {
+
+                foreach(Product p in s.products)
+                {
+                    total += p.Price;
+                }
+                output += "{ "+ s.Name+ "}:Storage worth:{" +total+ "}\n";
+            }
+            return output;
         }
 
     }

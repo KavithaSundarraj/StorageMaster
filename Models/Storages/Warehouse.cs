@@ -13,7 +13,7 @@ namespace StorageMaster.Models.Storages
             this.Capacity = 10;
             this.GarageSlots = 10;
 
- //           public Vehicle[] Garage = new Vehicle[GarageSlots];
+ Garage = new Vehicle[GarageSlots];
 
             Semi semi1 = new Semi();
             Garage[0] = semi1;

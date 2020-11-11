@@ -17,7 +17,7 @@ namespace StorageMaster.Models.Storages
 
         public List<Vehicle> vehicles;
         //      protected IReadOnlyCollection<Vehicle> garage;
-        public Vehicle[] Garage;
+        public Vehicle[] Garage ;
 
         // public IReadOnlyCollection<Product> products;
         public List<Product> products = new List<Product>();  // List of all products in this Storage
@@ -52,7 +52,7 @@ namespace StorageMaster.Models.Storages
             /*this.Capacity = capacity;
             this.GarageSlots = garageSlots;
             this.vehicles = vehicles;*/
-
+/*
             // ***  array.
             Garage = new Vehicle[GarageSlots];
 
@@ -62,6 +62,7 @@ namespace StorageMaster.Models.Storages
             {
                 Garage[i++] = veh;
             }
+            */
         }
 
         public Vehicle GetVehicle(int garageSlot)
@@ -88,7 +89,7 @@ namespace StorageMaster.Models.Storages
                 {
                     deliveryLocation.Garage[i] = vehicle;
                     this.Garage[garageSlot] = null;
-                    return i;
+                    return i+1;
                 }
             }
             throw new InvalidOperationException(@"No room in garage!!");
@@ -100,9 +101,9 @@ namespace StorageMaster.Models.Storages
                 {
                 throw new InvalidOperationException(@"Storage is Full!!");
             }
-
-            Vehicle vehicle = GetVehicle(garageSlot);
-
+            Vehicle vehicle = Garage[garageSlot];
+            //Vehicle vehicle = GetVehicle(garageSlot);
+            //Console.WriteLine(vehicle.GetType().Name);
             int numOfUnloadedProducts = 0;
             while (!vehicle.IsEmpty)
             {

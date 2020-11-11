@@ -10,8 +10,8 @@ class SolidStateDrive : Product
 public SolidStateDrive(Double price) : base(price) 
 { 
 this.Price = price;
-this.Weight = 0.2; 
-} 
+this.Weight = 0.2; this.Type = "SolidStateDrive";
+        } 
 }
 }
 
