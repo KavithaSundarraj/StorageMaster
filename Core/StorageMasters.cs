@@ -20,28 +20,13 @@ namespace StorageMaster.Core
 
         public string AddProduct(string type, double price)
         {
-            p = this.productFactory.CreateProduct(type, price);
-
-            //switch (type)
-            //{
-            //    case "Gpu":
-            //        p = new Gpu(price);
-            //        break;
-            //    case "Ram":
-            //        p = new Ram(price);
-            //        break;
-            //    case "HardDrive":
-            //        p = new Harddrive(price);
-            //        break;
-            //    case "SolidStateDrive":
-            //        p = new SolidStateDrive(price);
-            //        break;
-            //    default:
-            //        throw new InvalidOperationException("Invalid product type!");
-                    //break;
-            //}
-            ProductPool.Add(p);
-            return $"Added {type} to pool";
+            try
+            {
+                p = this.productFactory.CreateProduct(type, price);
+                ProductPool.Add(p);
+                return $"Added {type} to pool";
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
         // comment 
@@ -50,30 +35,10 @@ namespace StorageMaster.Core
             try
             {
                 s = storageFactory.CreateStorage(type, name);
-                //switch (type)
-                //{
-                //    case "AutomatedWarehouse":
-                //        s = new AutomatedWarehouse(name);
-                //        break;
-                //    case "DistributionCenter":
-                //        s = new DistributionCenter(name);
-                //        break;
-                //    case "Warehouse":
-                //        s = new Warehouse(name);
-                //        break;
-                //    default:
-                //        throw new InvalidOperationException("Invalid storage type!");
-
-                //}
-
                 StorageRegistry.Add(s);
-                //return $"Registered {StorageRegistry.Count}";
                 return $"Registered {name}";
             }
-            catch(Exception e)
-            {
-                return "Invalid storagename"+e ;
-            }
+            catch(Exception ex) {return ex.Message ;}
         }
 
         public string SelectVehicle(string StorageName, int GarageSlot)
@@ -95,94 +60,87 @@ namespace StorageMaster.Core
                 {
                     throw new InvalidOperationException("Error: There is no vehicle in that garagespot!");
                 }
-
-
                 return $"Selected {selectedvehicle.Type}";
             }
-            catch(InvalidOperationException e)
-            {
-                return "Invalid storagename" + e ;
-            }
+            catch(InvalidOperationException ex) {return ex.Message;}
         }
 
-        //The user adds items like "HardDrive, Ram, Ram"
         public string LoadVehicle(params string[] Productnames)
         {
             int productCount = Productnames.Length;
             int loadedProductsCount = 0;
-
-
-            //For every item as parameter look through Productpool for item with same Type.
-            for (int i = 0; i < productCount; i++)
+            try 
             {
-                switch (Productnames[i])
+                for (int i = 0; i < productCount; i++)
                 {
-                    case "Gpu":
-                        Product Loadproduct = ProductPool.FindLast(x => x.Type == "Gpu");
-                        if (Loadproduct == null)
-                        {
-                            throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
-                        }
-                        else
-                        {   //Need to add what happens if Loadproduct() throw exception
-                            selectedvehicle.LoadProduct(Loadproduct);
-                            ProductPool.Remove(Loadproduct);
-                            loadedProductsCount++;
-                        }
-                        break;
+                    switch (Productnames[i])
+                    {
+                        case "Gpu":
+                            Product Loadproduct = ProductPool.FindLast(x => x.Type == "Gpu");
+                            if (Loadproduct == null)
+                            {
+                                throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
+                            }
+                            else
+                            {   
+                                selectedvehicle.LoadProduct(Loadproduct);
+                                ProductPool.Remove(Loadproduct);
+                                loadedProductsCount++;
+                            }
+                            break;
 
-                    case "HardDrive":
-                        Loadproduct = ProductPool.FindLast(x => x.Type == "HardDrive");
-                        if (Loadproduct == null)
-                        {
-                            throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
-                        }
-                        else
-                        {   //Need to add what happens if Loadproduct() throw exception
-                            selectedvehicle.LoadProduct(Loadproduct);
-                            ProductPool.Remove(Loadproduct);
-                            loadedProductsCount++;
-                        }
-                        break;
+                        case "Harddrive":
+                            Loadproduct = ProductPool.FindLast(x => x.Type == "Harddrive");
+                            if (Loadproduct == null)
+                            {
+                                throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
+                            }
+                            else
+                            {   
+                                selectedvehicle.LoadProduct(Loadproduct);
+                                ProductPool.Remove(Loadproduct);
+                                loadedProductsCount++;
+                            }
+                            break;
 
-                    case "Ram":
-                        Loadproduct = ProductPool.FindLast(x => x.Type == "Ram");
-                        if (Loadproduct == null)
-                        {
-                            throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
-                        }
-                        else
-                        {   //Need to add what happens if Loadproduct() throw exception
-                            selectedvehicle.LoadProduct(Loadproduct);
-                            ProductPool.Remove(Loadproduct);
-                            loadedProductsCount++;
-                        }
-                        break;
+                        case "Ram":
+                            Loadproduct = ProductPool.FindLast(x => x.Type == "Ram");
+                            if (Loadproduct == null)
+                            {
+                                throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
+                            }
+                            else
+                            {   
+                                selectedvehicle.LoadProduct(Loadproduct);
+                                ProductPool.Remove(Loadproduct);
+                                loadedProductsCount++;
+                            }
+                            break;
 
-                    case "SolidStateDrive":
-                        Loadproduct = ProductPool.FindLast(x => x.Type == "SolidStateDrive");
-                        if (Loadproduct == null)
-                        {
-                            throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
-                        }
-                        else
-                        {   //Need to add what happens if Loadproduct() throw exception
-                            selectedvehicle.LoadProduct(Loadproduct);
-                            ProductPool.Remove(Loadproduct);
-                            loadedProductsCount++;
-                        }
-                        break;
+                        case "SolidStateDrive":
+                            Loadproduct = ProductPool.FindLast(x => x.Type == "SolidStateDrive");
+                            if (Loadproduct == null)
+                            {
+                                throw new InvalidOperationException($"{Productnames[i]} is out of stock!");
+                            }
+                            else
+                            {   
+                                selectedvehicle.LoadProduct(Loadproduct);
+                                ProductPool.Remove(Loadproduct);
+                                loadedProductsCount++;
+                            }
+                            break;
 
-                    default:
-                        throw new InvalidOperationException("That's not a real product! What are you doing?!");
+                        default:
+                            throw new InvalidOperationException("ERROR: That's not a real product!");
+                    }
                 }
-
             }
+            catch(Exception ex) { return ex.Message; }
             return $"Loaded {loadedProductsCount}/{productCount} products into {selectedvehicle.Type}";
         }
         public string GetStorageStatus(string StorageName)
         {
-            
             Storage s = StorageRegistry.Find(x => x.Name == StorageName);
             /*
              * The storage’s products are counted, grouped by name, 
@@ -230,18 +188,13 @@ namespace StorageMaster.Core
                     vehicleType += s.Garage[i].GetType().Name.ToString()+" | ";
                 }
             }
-
             return $"Stock ({sumofproductsweight}/{storagecapacity}):[Gpu {GpuCount}, HardDrive {HardDriveCount}, Ram {RamCount}, SolidStateDrive {SolidStateDriveCount}] \n Garage:{vehicleType}";
-            
-
-
 
             /*List<Product> count = LoadProduct();
             int count = 0;
             var productcount = s.GetStorageStatus(StorageName).GroupBy(p => p.name).ToList;
             var productcountInDescOrder = storage.OrderByDescending(p => p.productcount);
             var StoragenameInAscenOrder = Storage.OrderByAscending(s => s.StorageName);*/
-
         }
 
         // Changed on 11/11
@@ -265,16 +218,18 @@ namespace StorageMaster.Core
         {
             Storage sourceStorage = FindStorage(sourceName);
             Storage destinationStorage = FindStorage(destinationName);
-
-            if (sourceStorage == null)
+            try
             {
-                throw new InvalidOperationException("Invalid source storage!");
+                if (sourceStorage == null)
+                {
+                    throw new InvalidOperationException("Invalid source storage!");
+                }
+                if (destinationStorage == null)
+                {
+                    throw new InvalidOperationException("Invalid destination storage!");
+                }
             }
-            if (destinationStorage == null)
-            {
-                throw new InvalidOperationException("Invalid destination storage!");
-            }
-
+            catch(Exception ex) { return ex.Message; }
             string vehicleType = sourceStorage.Garage[garageSlot].GetType().Name;
 
             int destinationGarageSlot = sourceStorage.SendVehicleTo(garageSlot, destinationStorage);
@@ -295,12 +250,16 @@ namespace StorageMaster.Core
          */
         public string UnloadVehicle(string storageName, int garageSlot)
         {
-            Storage s = FindStorage(storageName);
+            try
+            {
+                Storage s = FindStorage(storageName);
 
-            int productsInVehicle = s.NumOfItemsInVehicle(garageSlot);
-            int unloadedProductsCount = s.UnloadVehicle(garageSlot);
-
+                int productsInVehicle = s.NumOfItemsInVehicle(garageSlot);
+                int unloadedProductsCount = s.UnloadVehicle(garageSlot);
+            
             return $"Unloaded {unloadedProductsCount}/{productsInVehicle} products at {storageName}";
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
        /* 
@@ -316,7 +275,6 @@ namespace StorageMaster.Core
             string output = "";
             foreach (Storage s in StorageRegistry)
             {
-
                 foreach(Product p in s.products)
                 {
                     total += p.Price;
@@ -325,6 +283,5 @@ namespace StorageMaster.Core
             }
             return output;
         }
-
     }
 }

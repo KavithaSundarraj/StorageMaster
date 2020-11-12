@@ -8,7 +8,6 @@ namespace StorageMaster.Models.Vehicles
     public abstract class Vehicle
     {
         public double Capacity { get; set; }
-        //public IReadOnlyCollection<Product> Trunk => this.Trunk.AsReadOnly();
         public List<Product> Trunk = new List<Product>();
         public bool IsFuLL;
         public bool IsEmpty;

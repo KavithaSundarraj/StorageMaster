@@ -8,17 +8,8 @@ namespace StorageMaster.Models.Storages
 {
     public class Warehouse : Storage
     {
-       
-        //private const int Capacity = 10;
-        //private const int Garageslots = 10;
-        //private static readonly Vehicle[] defaultvehicles =
-        //{ 
-        //    new Semi(), 
-        //    new Semi(), 
-        //    new Semi()
-        //};
-
-        public Warehouse(string name) : base(name /*Capacity, Garageslots, defaultvehicles*/)
+      
+        public Warehouse(string name) : base(name)
         {
             /*      
             Name – string
@@ -40,7 +31,7 @@ namespace StorageMaster.Models.Storages
             Garage[1] = this.vehicleFactory.CreateVehicle("Semi");     // Garrage array starts from 1 as Slot starts from 1
             Garage[2] = this.vehicleFactory.CreateVehicle("Semi");
             Garage[3] = this.vehicleFactory.CreateVehicle("Semi");
-
+            
         }
 
     }
