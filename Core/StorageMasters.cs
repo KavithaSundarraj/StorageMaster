@@ -65,6 +65,7 @@ namespace StorageMaster.Core
 
         public string SelectVehicle(string StorageName, int GarageSlot)
         {
+
             Storage s = StorageRegistry.Find(x => x.Name == StorageName);
 
             if (s == null)
@@ -226,7 +227,8 @@ namespace StorageMaster.Core
         {
             return StorageRegistry.Find(x => x.Name == storageName);
         }
-        /*   Comment - Requirement
+        /*
+         *   Comment - Requirement
          *   SendVehicleTo Command
          *   Parameters
          *      sourceName – string
@@ -252,12 +254,15 @@ namespace StorageMaster.Core
             }
 
             string vehicleType = sourceStorage.Garage[garageSlot].GetType().Name;
+
             int destinationGarageSlot = sourceStorage.SendVehicleTo(garageSlot, destinationStorage);
 
             return $"Sent {vehicleType} to {destinationName} (slot {destinationGarageSlot})";
+
         }
 
-        /*   Comment - Requirement
+        /*   
+         *   Comment - Requirement
          *   UnloadVehicle Command
          *   Parameters
          *      storageName – string
@@ -270,19 +275,18 @@ namespace StorageMaster.Core
         {
             Storage s = FindStorage(storageName);
 
-            int GarageSlotNumberToArray = garageSlot - 1;
-            int productsInVehicle = s.Garage[GarageSlotNumberToArray].Trunk.Count;
+            int productsInVehicle = s.NumOfItemsInVehicle(garageSlot);
             int unloadedProductsCount = s.UnloadVehicle(garageSlot);
 
             return $"Unloaded {unloadedProductsCount}/{productsInVehicle} products at {storageName}";
         }
 
-       /* The method gets all the storages in the storage registry, ordered by the sum of their products’ price
+       /* 
+        * The method gets all the storages in the storage registry, ordered by the sum of their products’ price
         * (descending). For each one, a string is produced in the following format:
-{storageName}:
-Storage worth: ${totalMoney:F2
-}
-The method returns all the formatted storage strings, separated by new lines. */
+        *    {storageName}:Storage worth: ${totalMoney:F2}
+        *    The method returns all the formatted storage strings, separated by new lines. 
+        */
 
         public string GetSummary()
         {

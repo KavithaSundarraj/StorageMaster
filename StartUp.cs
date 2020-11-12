@@ -21,8 +21,8 @@ namespace StorageMaster
             Console.WriteLine(s.SendVehicleTo("SofiaDistribution", 1, "AmazonWarehouse"));
 //          Console.WriteLine(s.UnloadVehicle("SofiaDistribution", 4));  // Incorrect!!! Vehicle has been transferred to AmazonWarehouse;
             Console.WriteLine(s.UnloadVehicle("AmazonWarehouse", 4));
-            Console.WriteLine(s.GetStorageStatus("AmazonWarehouse"));
             Console.WriteLine(s.GetStorageStatus("SofiaDistribution"));
+            Console.WriteLine(s.GetStorageStatus("AmazonWarehouse"));      
             Console.WriteLine(s.GetSummary());
 
         }

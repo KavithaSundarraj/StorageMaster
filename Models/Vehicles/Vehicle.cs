@@ -62,6 +62,7 @@ namespace StorageMaster.Models.Vehicles
             }
             else
             {
+                //  edited by Daryl 11/11
                 Product unloadedItem = Trunk[Trunk.Count-1];
                 TotalWeight -= unloadedItem.Weight;
                 this.Trunk.RemoveAt(Trunk.Count-1);
