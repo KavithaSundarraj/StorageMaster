@@ -24,8 +24,7 @@ namespace StorageMaster.Models.Storages
 
             Garage = new Vehicle[GarageSlots + 1];  // Garage slot number begin from 1 not 0
 
-            Truck truck = new Truck();
-            Garage[1] = truck;   // Garrage array starts from 1 as Slot starts from 1
+            Garage[1] = vehicleFactory.CreateVehicle("Truck");   // Garrage array starts from 1 as Slot starts from 1
 
         }
     }

@@ -1,64 +1,69 @@
 ﻿using StorageMaster.Models.Products;
 using StorageMaster.Models.Storages;
 using StorageMaster.Models.Vehicles;
+using StorageMaster.Factories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace StorageMaster.Core
 {
-    class StorageMasters
+    public class StorageMasters
     {
         public List<Product> ProductPool= new List<Product>();
         Product p;
         public List<Storage> StorageRegistry = new List<Storage>();
         Storage s;
         Vehicle selectedvehicle;
+        public ProductFactory productFactory = new ProductFactory();
+        public StorageFactory storageFactory = new StorageFactory();
 
         public string AddProduct(string type, double price)
         {
+            p = this.productFactory.CreateProduct(type, price);
 
-            switch (type)
-            {
-                case "Gpu":
-                    p = new Gpu(price);
-                    break;
-                case "Ram":
-                    p = new Ram(price);
-                    break;
-                case "HardDrive":
-                    p = new Harddrive(price);
-                    break;
-                case "SolidStateDrive":
-                    p = new SolidStateDrive(price);
-                    break;
-                default:
-                    throw new InvalidOperationException("Invalid product type!");
+            //switch (type)
+            //{
+            //    case "Gpu":
+            //        p = new Gpu(price);
+            //        break;
+            //    case "Ram":
+            //        p = new Ram(price);
+            //        break;
+            //    case "HardDrive":
+            //        p = new Harddrive(price);
+            //        break;
+            //    case "SolidStateDrive":
+            //        p = new SolidStateDrive(price);
+            //        break;
+            //    default:
+            //        throw new InvalidOperationException("Invalid product type!");
                     //break;
-            }
+            //}
             ProductPool.Add(p);
-
             return $"Added {type} to pool";
         }
 
         // comment 
         public string RegisterStorage(string type, string name)
         {
-            switch (type)
-            {
-                case "AutomatedWarehouse":
-                    s = new AutomatedWarehouse(name);
-                    break;
-                case "DistributionCenter":
-                    s = new DistributionCenter(name);
-                    break;
-                case "Warehouse":
-                    s = new Warehouse(name);
-                    break;
-                default:
-                    throw new InvalidOperationException("Invalid storage type!");
+            s = storageFactory.CreateStorage(type, name);
+            //switch (type)
+            //{
+            //    case "AutomatedWarehouse":
+            //        s = new AutomatedWarehouse(name);
+            //        break;
+            //    case "DistributionCenter":
+            //        s = new DistributionCenter(name);
+            //        break;
+            //    case "Warehouse":
+            //        s = new Warehouse(name);
+            //        break;
+            //    default:
+            //        throw new InvalidOperationException("Invalid storage type!");
 
-            }
+            //}
+
             StorageRegistry.Add(s);
             //return $"Registered {StorageRegistry.Count}";
             return $"Registered {name}";
@@ -212,7 +217,7 @@ namespace StorageMaster.Core
             }
 
             return $"Stock ({sumofproductsweight}/{storagecapacity}):[Gpu {GpuCount}, HardDrive {HardDriveCount}, Ram {RamCount}, SolidStateDrive {SolidStateDriveCount}] \n Garage:{vehicleType}";
-            //return $"{garage[0].Type}|{garage[1].Type}|{garage[2].Type}"
+            
 
 
 

@@ -4,6 +4,7 @@ using StorageMaster.Models.Vehicles;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using StorageMaster.Factories;
 
 namespace StorageMaster.Models.Storages
 {
@@ -20,6 +21,8 @@ namespace StorageMaster.Models.Storages
         public string  Name { get; set; }  // Name – string
         public int Capacity { get; set; }  // Capacity – int – the maximum weight of products the storage can handle
         public int GarageSlots { get; set; }  // GarageSlots – int – the number of garage slots the storage’s garage has
+
+        public VehicleFactory vehicleFactory = new VehicleFactory();
 
         //  protected IReadOnlyCollection<Vehicle> garage;
         public Vehicle[] Garage ;

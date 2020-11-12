@@ -59,10 +59,6 @@ namespace StorageMaster.Models.Products
         public Product(double price)
         {
             this.price = price;
-
         }
-
-
-
     }
 }
