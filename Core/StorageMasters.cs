@@ -47,47 +47,62 @@ namespace StorageMaster.Core
         // comment 
         public string RegisterStorage(string type, string name)
         {
-            s = storageFactory.CreateStorage(type, name);
-            //switch (type)
-            //{
-            //    case "AutomatedWarehouse":
-            //        s = new AutomatedWarehouse(name);
-            //        break;
-            //    case "DistributionCenter":
-            //        s = new DistributionCenter(name);
-            //        break;
-            //    case "Warehouse":
-            //        s = new Warehouse(name);
-            //        break;
-            //    default:
-            //        throw new InvalidOperationException("Invalid storage type!");
+            try
+            {
+                s = storageFactory.CreateStorage(type, name);
+                //switch (type)
+                //{
+                //    case "AutomatedWarehouse":
+                //        s = new AutomatedWarehouse(name);
+                //        break;
+                //    case "DistributionCenter":
+                //        s = new DistributionCenter(name);
+                //        break;
+                //    case "Warehouse":
+                //        s = new Warehouse(name);
+                //        break;
+                //    default:
+                //        throw new InvalidOperationException("Invalid storage type!");
 
-            //}
+                //}
 
-            StorageRegistry.Add(s);
-            //return $"Registered {StorageRegistry.Count}";
-            return $"Registered {name}";
+                StorageRegistry.Add(s);
+                //return $"Registered {StorageRegistry.Count}";
+                return $"Registered {name}";
+            }
+            catch(Exception e)
+            {
+                return "Invalid storagename"+e ;
+            }
         }
 
         public string SelectVehicle(string StorageName, int GarageSlot)
         {
+            try
+            {
+                Storage s = StorageRegistry.Find(x => x.Name == StorageName);
 
-            Storage s = StorageRegistry.Find(x => x.Name == StorageName);
+                if (s == null)
+                {
+                    throw new InvalidOperationException("Error: There is no such storage facility!");
+                }
+                else
+                if (s.Garage[GarageSlot] != null)
+                {
+                    selectedvehicle = s.Garage[GarageSlot];
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error: There is no vehicle in that garagespot!");
+                }
 
-            if (s == null)
-            {
-                throw new InvalidOperationException("Error: There is no such storage facility!");
+
+                return $"Selected {selectedvehicle.Type}";
             }
-            else
-            if (s.Garage[GarageSlot] != null)
+            catch(InvalidOperationException e)
             {
-                selectedvehicle = s.Garage[GarageSlot];
+                return "Invalid storagename" + e ;
             }
-            else
-            {
-                throw new InvalidOperationException("Error: There is no vehicle in that garagespot!");
-            }
-            return $"Selected {selectedvehicle.Type}";
         }
 
         //The user adds items like "HardDrive, Ram, Ram"

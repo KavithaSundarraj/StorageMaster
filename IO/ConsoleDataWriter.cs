@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+
 namespace StorageMaster.IO
 {
     public class ConsoleDataWriter : IWriter
@@ -13,17 +14,16 @@ namespace StorageMaster.IO
         
         public void display(String output)
         {
-
+            //If file not exists , create an new file
             if (!File.Exists(path))
             {
-
                 TextWriter tw = new StreamWriter(File.Create(path));
                 tw.WriteLine(output);
                 tw.Close();
             }
+            //If file exists Already
             else if (File.Exists(path))
-            {
-                
+            { 
                 using (var tw = new StreamWriter(path, true))
                 {
                     tw.WriteLine(output);
@@ -31,27 +31,23 @@ namespace StorageMaster.IO
             }
 
         }
+
+        //printing the whole output in console
         public void output()
         {
             String line;
             try
             {
-                //Pass the file path and file name to the StreamReader constructor
                 StreamReader sr = new StreamReader(path);
-                //Read the first line of text
                 line = sr.ReadLine();
-                //Continue to read until you reach end of file
                 while (line != null)
                 {
-                    //write the lie to console window
                     Console.WriteLine(line);
-                    //Read the next line
                     line = sr.ReadLine();
                 }
-              
-                    //close the file
-                    sr.Close();
-                
+               sr.Close();
+                // delete file after displaying whole output
+                File.Delete(path);
                 Console.ReadLine();
             }
 
