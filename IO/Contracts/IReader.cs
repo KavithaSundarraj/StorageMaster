@@ -4,7 +4,8 @@ using System.Text;
 
 namespace StorageMaster.IO.Contracts
 {
-    class IReader
+   public interface IReader
     {
+        public void getinput();
     }
 }

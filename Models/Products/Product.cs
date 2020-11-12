@@ -21,37 +21,48 @@ namespace StorageMaster.Models.Products
         double weight;
         public string Type;
         public double Price
-        
+
         {
             get
             {
                 return this.price;
             }
-
             set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     throw new InvalidOperationException("Price cannot be negative!");
                 }
+                //               edited by Daryl
+                this.price = value;
             }
         }
         public double Weight
         {
             get
             {
-                return weight;
+                //               edited by Daryl
+                //               return weight;
+                return this.weight;
             }
-
             set
             {
+                //               edited by Daryl
+                if (value < 0)
+                {
+                    throw new InvalidOperationException("Weight cannot be negative!");
+                }
+                //               edited by Daryl
+                this.weight = value;
             }
         }
         public Product(double price)
         {
             this.price = price;
-            
+
         }
+
+
 
     }
 }

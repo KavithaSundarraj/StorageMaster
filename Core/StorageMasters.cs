@@ -26,7 +26,7 @@ namespace StorageMaster.Core
                 case "Ram":
                     p = new Ram(price);
                     break;
-                case "Harddrive":
+                case "HardDrive":
                     p = new Harddrive(price);
                     break;
                 case "SolidStateDrive":
@@ -60,6 +60,7 @@ namespace StorageMaster.Core
 
             }
             StorageRegistry.Add(s);
+            //return $"Registered {StorageRegistry.Count}";
             return $"Registered {name}";
         }
 
@@ -175,6 +176,7 @@ namespace StorageMaster.Core
             */
             int sumofproducts = s.products.Count;
             double sumofproductsweight = s.TotalWeightofAllProducts();
+
             int storagecapacity = s.Capacity;
             int GpuCount = 0, HardDriveCount = 0, RamCount = 0, SolidStateDriveCount = 0;
             foreach (Product p in s.products)

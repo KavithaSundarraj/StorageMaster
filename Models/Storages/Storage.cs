@@ -34,7 +34,9 @@ namespace StorageMaster.Models.Storages
             foreach (Product p in products)
             {
                 totalWeight += p.Weight;
+                
             }
+            
             return totalWeight;
         }
 

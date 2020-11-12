@@ -4,7 +4,9 @@ using System.Text;
 
 namespace StorageMaster.IO.Contracts
 {
-    class IWriter
+ public interface IWriter
     {
+        public void display(String output);
+        public void output();
     }
 }
