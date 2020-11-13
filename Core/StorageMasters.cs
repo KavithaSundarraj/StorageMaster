@@ -230,9 +230,12 @@ namespace StorageMaster.Core
                 {
                     throw new InvalidOperationException("Invalid destination storage!");
                 }
-             vehicleType = sourceStorage.Garage[garageSlot].GetType().Name;
-
-               destinationGarageSlot = sourceStorage.SendVehicleTo(garageSlot, destinationStorage);
+                if (sourceStorage.Garage[garageSlot] == null)
+                {
+                    throw new InvalidOperationException("No vehicle in the garageslot!");
+                }
+                vehicleType = sourceStorage.Garage[garageSlot].GetType().Name;
+                destinationGarageSlot = sourceStorage.SendVehicleTo(garageSlot, destinationStorage);
             }
             catch(Exception ex) { return ex.Message; }
 
