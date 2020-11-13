@@ -32,6 +32,11 @@ namespace StorageMaster.IO
 
         }
 
+        public void deletefile()
+        {
+            File.Delete(path);
+
+        }
         //printing the whole output in console
         public void output()
         {

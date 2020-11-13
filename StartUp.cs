@@ -10,7 +10,7 @@ namespace StorageMaster
     {
         static void Main(string[] args)
         {
-            
+            /*
              StorageMasters s = new StorageMasters();
              Console.WriteLine(s.RegisterStorage("DistributionCente", "SofiaDistribution"));
             Console.WriteLine(s.RegisterStorage("DistributionCenter", "SofiaDistribution"));
@@ -25,11 +25,11 @@ namespace StorageMaster
              Console.WriteLine(s.UnloadVehicle("AmazonWarehouse", 4));
              Console.WriteLine(s.GetStorageStatus("SofiaDistribution"));
              Console.WriteLine(s.GetStorageStatus("AmazonWarehouse"));      
-             Console.WriteLine(s.GetSummary());
-             // */
+             Console.WriteLine(s.GetSummary());  */
+             
 
-            ConsoleDataReader CDR = new ConsoleDataReader();
-            CDR.getinput();
+             ConsoleDataReader CDR = new ConsoleDataReader();
+            CDR.getinput(); 
         }
     }
 }

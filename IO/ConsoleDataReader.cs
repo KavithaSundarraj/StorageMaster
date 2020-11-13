@@ -14,33 +14,36 @@ namespace StorageMaster.IO
             int i = 0;  // for testing purpose
             String[] splitup;
             StorageMasters s = new StorageMasters();
-            
+            ConsoleDataWriter CDW = new ConsoleDataWriter();
+            CDW.deletefile();
+
             do
             {
-                 String getLine = Console.ReadLine();
-                /* //  This part is testing purpose
+                 //String getLine = Console.ReadLine();
+               //  This part is testing purpose
                  String getLine = null;
-                 if (i == 0) { getLine = "RegisterStorage DistributionCen SofiaDistribution"; }
-                 if (i == 1) { getLine = "RegisterStorage Warehouse AmazonWarehouse"; }
+                 if (i == 0) { getLine = "RegisterStorage DistributionCenter SofiaDistribution"; }
+                //if (i == 0) { getLine = "RegisterStorage DistributionCent SofiaDistribution"; }
+                if (i == 1) { getLine = "RegisterStorage Warehouse AmazonWarehouse"; }
                  if (i == 2) { getLine = "AddProduct Gpu 1200"; }
                  if (i == 3) { getLine = "AddProduct SolidStateDrive 205"; }
                  if (i == 4) { getLine = "AddProduct Harddrive 70"; }
                  if (i == 5) { getLine = "AddProduct Harddrive 120"; }
-                 //               if (i == 6) { getLine = "SelectVehicle SofiaDistribution 0"; }
-                 if (i == 6) { getLine = "SelectVehicle SofiaDistribution 1"; }
+                  //            if (i == 6) { getLine = "SelectVehicle SofiaDistribution 0"; }
+                if (i == 6) { getLine = "SelectVehicle SofiaDistribution 1"; }
                  if (i == 7) { getLine = "LoadVehicle SolidStateDrive Gpu"; }
-                 //if (i == 8) { getLine = "SendVehicleTo SofiaDistribution 0 AmazonWarehouse"; }
-                               if (i == 8) { getLine = "SendVehicleTo SofiaDistribution 1 AmazonWarehouse"; }
+                 if (i == 8) { getLine = "SendVehicleTo SofiaDistribution 0 AmazonWarehouse"; }
+                  //             if (i == 8) { getLine = "SendVehicleTo SofiaDistribution 1 AmazonWarehouse"; }
                  if (i == 9) { getLine = "UnloadVehicle AmazonWarehouse 4"; }
                  if (i == 10) { getLine = "END"; }
                  i++;
-                 //  End of testing */
+                 //  End of testing 
 
                 splitup = getLine.Split();
                 //  Removed by Daryl
                 //        StorageMasters s = new StorageMasters();
                 String output = "";
-                ConsoleDataWriter CDW = new ConsoleDataWriter();
+                
 
 
             
@@ -84,7 +87,7 @@ namespace StorageMaster.IO
                                 case "END":
                                     output = s.GetSummary();
                                     CDW.display(output);
-                                    CDW.output();
+                                    //CDW.output();
                                     Console.WriteLine(output);
                                     break;
                                 default:
